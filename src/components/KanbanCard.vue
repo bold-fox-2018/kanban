@@ -1,8 +1,16 @@
 <template>
-    <div class="card">
-        <h2>{{data.name}}</h2>
-        <ContentCard v-for="item in data.tasks" :key="item.id" :item="item" :name="data.name"></ContentCard>
-    </div>
+  <v-flex mr-2 xs3>
+    <v-card>
+      <v-card-title primary-title outline>
+        {{data.name}}
+      </v-card-title>
+      <v-card-actions>
+          <v-layout column justify-space-between wrap >
+            <ContentCard v-for="item in data.tasks" :key="item.id" :item="item" :name="data.name"></ContentCard>
+          </v-layout>
+      </v-card-actions>
+    </v-card>
+  </v-flex>
 </template>
 
 <script>
@@ -17,28 +25,7 @@ export default {
     this.cardTitle = this.title
   },
   data () {
-    return {
-
-    }
+    return {}
   }
-
 }
 </script>
-
-<style scoped>
-.card {
-  font-size: 10px;
-  color: #4684f6;
-  width: 100%;
-  min-height: 400px;
-  height: 100%;
-  background-color: white;
-  -webkit-box-shadow: 0px 5px 4px #c0c0c09d;
-  -moz-box-shadow: 0px 5px 4px #c0c0c09d;
-  box-shadow: 0px 5px 4px #c0c0c09d;
-  border-radius: 5px;
-}
-.card h2 {
-  padding: 20px;
-}
-</style>

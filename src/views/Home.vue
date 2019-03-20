@@ -1,12 +1,14 @@
 <template>
-  <div class="home">
+  <v-app class="home">
+    <v-content>
     <MainHeader/>
-    <div class="container">
-      <div class="container-card">
-        <KanbanCard v-for="(data,index) in taskLists" :key="index" :data="data"></KanbanCard>
-      </div>
-    </div>
-  </div>
+      <v-container fluid>
+          <v-layout row justify-space-between >
+            <KanbanCard v-for="(data,index) in taskLists" :key="index" :data="data"></KanbanCard>
+          </v-layout>
+      </v-container>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
@@ -54,7 +56,6 @@ export default {
         taskData[2].tasks = []
         taskData[3].tasks = []
         querySnapshot.forEach(childSnapshot => {
-          console.log(childSnapshot.id)
           if (childSnapshot.data().status === 'Pre - Log') {
             const obj = childSnapshot.data()
             obj.id = childSnapshot.id
@@ -78,27 +79,3 @@ export default {
   mounted () {}
 }
 </script>
-
-<style>
-.container-card {
-  margin-top: 30px;
-  padding-top: 5%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  width: 90%;
-  grid-gap: 20px;
-}
-.container {
-  background-color: #f6f7f9;
-  width: 100%;
-  min-height: 675px;
-}
-@media only screen and (max-width: 800px) {
-  .container-card {
-    display: block;
-  }
-}
-</style>
