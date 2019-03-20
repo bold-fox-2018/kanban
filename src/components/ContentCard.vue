@@ -1,7 +1,7 @@
 <template>
   <v-flex my-1>
     <v-card>
-      <v-card-title>{{item.title}}</v-card-title>
+      <v-card-title>{{item.title.toUpperCase()}}</v-card-title>
       <v-card-actions>
         <v-layout column>
           <v-btn small @click="removeItem(item.id)" flat color="red">Delete</v-btn>

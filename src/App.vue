@@ -5,7 +5,7 @@
         <span>My</span>
         <span class="font-weight-heavy" >KanBan</span>
       </v-toolbar-title>
-
+      <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn flat to="/" >Home</v-btn>
         <v-btn flat to="/about" >About</v-btn>
