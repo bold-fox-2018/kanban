@@ -20,19 +20,23 @@ import database from '../assets/config.js'
 const taskData = [
   {
     name: `Pre - Log`,
-    tasks: []
+    tasks: [],
+    color: 'pink'
   },
   {
     name: `To - Do`,
-    tasks: []
+    tasks: [],
+    color: 'purple'
   },
   {
     name: `On - Going`,
-    tasks: []
+    tasks: [],
+    color: 'blue'
   },
   {
     name: `Finished`,
-    tasks: []
+    tasks: [],
+    color: 'green'
   }
 ]
 

@@ -1,8 +1,9 @@
 <template>
   <v-flex mr-2 xs3>
-    <v-card>
-      <v-card-title primary-title outline>
-        {{data.name}}
+    <v-card hover :color="data.color">
+      <v-card-title primary-title bold>
+          <p class="text-xs-center">{{data.name}}</p>
+
       </v-card-title>
       <v-card-actions>
           <v-layout column justify-space-between wrap >
@@ -20,7 +21,7 @@ export default {
   components: {
     ContentCard
   },
-  props: ['data'],
+  props: ['data', 'color'],
   created () {
     this.cardTitle = this.title
   },
