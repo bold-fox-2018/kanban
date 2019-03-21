@@ -1,8 +1,8 @@
 <template>
-  <v-flex my-1>
+  <v-flex my-1 :name="item.name">
     <v-toolbar :color="color" class="lighten-3 text-xs-center" >
       <v-toolbar-title>
-        <div class>{{item.title.toUpperCase()}}</div>
+        <div class><i :class="icon"></i>{{item.title.toUpperCase()}}</div>
       </v-toolbar-title>
     </v-toolbar>
     <v-card>
@@ -55,7 +55,7 @@ export default {
       dialog: false
     };
   },
-  props: ["item", "name", "color"],
+  props: ["item", "name", "color", "icon"],
   created() {
     if (this.name === "Pre - Log") {
       this.buttonOne = "To - Do";

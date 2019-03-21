@@ -22,22 +22,26 @@ const taskData = [
   {
     name: `Pre - Log`,
     tasks: [],
-    color: 'pink'
+    color: 'pink',
+    class: 'far fa-star-half'
   },
   {
     name: `To - Do`,
     tasks: [],
-    color: 'purple'
+    color: 'purple',
+    class: 'far fa-star'
   },
   {
     name: `On - Going`,
     tasks: [],
-    color: 'blue'
+    color: 'blue',
+    class: 'fas fa-star-half-alt'
   },
   {
     name: `Finished`,
     tasks: [],
-    color: 'green'
+    color: 'green',
+    class: 'fas fa-star'
   }
 ]
 
