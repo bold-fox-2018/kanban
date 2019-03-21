@@ -8,7 +8,8 @@ Vue.config.productionTip = false;
  * Firebase
  */
 const firebase = require('firebase/app');
-require('firebase/firestore');
+import 'firebase/auth'
+import 'firebase/firestore'
 
 // Initialize Firebase
 const init = {
@@ -23,8 +24,15 @@ const init = {
 firebase.initializeApp(init);
 
 Vue.prototype.$db = firebase.firestore();
+Vue.prototype.$auth = firebase.auth();
 
-new Vue({
-  router,
-  render: h => h(App),
-}).$mount('#app');
+let app = ``;
+firebase.auth().onAuthStateChanged(() => {
+  if (!app) {
+    app = new Vue({
+      router,
+      render: h => h(App),
+    }).$mount('#app');
+  }
+});
+
