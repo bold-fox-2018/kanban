@@ -10,7 +10,7 @@
         <span aria-hidden="true"></span>
       </a>
     </div>
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarBasicExample" class="navbar-menu" v-if="$parent.isLogin">
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
@@ -19,7 +19,7 @@
             </a>
           </div>
         </div>
-        <div class="navbar-item" v-if="$parent.isLogin">
+        <div class="navbar-item">
           <div class="buttons">
             <a @click="logout()" class="button is-primary is-outlined">
               <strong>Logout</strong>
@@ -34,7 +34,7 @@
 <script>
   export default {
     name: 'Navbar',
-    methods:{
+    methods: {
       logout() {
         this.$auth.signOut().then(() => {
           this.$parent.isLogin = false;
