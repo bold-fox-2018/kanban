@@ -11,11 +11,11 @@
       </v-container>
       <v-card-actions>
         <v-layout column justify-space-between wrap elevation-15>
-          <draggable 
+          <draggable
             :list="data.tasks"
             :move="checkMove"
             @end="dragEnd"
-            
+
             :options="{group:'task'}"
           >
             <ContentCard :class="data.name"
@@ -34,40 +34,40 @@
 </template>
 
 <script>
-import ContentCard from "@/components/ContentCard.vue";
-import draggable from "vuedraggable";
-import database from "@/assets/config";
+import ContentCard from '@/components/ContentCard.vue'
+import draggable from 'vuedraggable'
+import database from '@/assets/config'
 export default {
-  name: "KanbanCard",
+  name: 'KanbanCard',
   components: {
     ContentCard,
     draggable
   },
-  props: ["data", "color"],
-  created() {
-    this.cardTitle = this.title;
+  props: ['data', 'color'],
+  created () {
+    this.cardTitle = this.title
   },
-  data() {
+  data () {
     return {
       id: '',
       from: '',
-      to:'',
-    };
+      to: ''
+    }
   },
   methods: {
-    checkMove(event) {
-      console.log('start id',event.draggedContext.element.id)
+    checkMove (event) {
+      console.log('start id', event.draggedContext.element.id)
       this.id = event.draggedContext.element.id
     },
-    dragEnd(event) {
+    dragEnd (event) {
       this.to = String(event.to.firstChild.className).slice(10)
       database
-      .collection("Tasks")
-      .doc(this.id)
-      .update({
-        status: this.to
-      });
+        .collection('Tasks')
+        .doc(this.id)
+        .update({
+          status: this.to
+        })
     }
   }
-};
+}
 </script>

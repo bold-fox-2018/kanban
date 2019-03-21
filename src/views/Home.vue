@@ -1,7 +1,6 @@
 <template>
   <v-app class="home">
     <v-content>
-    <!-- <MainHeader/> -->
       <v-container fluid>
           <v-layout row justify-space-between>
             <KanbanCard v-for="(data,index) in taskLists" :key="index" :data="data"></KanbanCard>
@@ -13,10 +12,8 @@
 
 <script>
 // @ is an alias to /src
-import MainHeader from '@/components/MainHeader.vue'
 import KanbanCard from '@/components/KanbanCard.vue'
 import database from '../assets/config.js'
-
 
 const taskData = [
   {
@@ -48,7 +45,6 @@ const taskData = [
 export default {
   name: 'home',
   components: {
-    MainHeader,
     KanbanCard
   },
   data () {

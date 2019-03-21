@@ -44,65 +44,65 @@
 </template>
 
 <script>
-import database from "@/assets/config";
+import database from '@/assets/config'
 
 export default {
-  name: "ContentCard",
-  data() {
+  name: 'ContentCard',
+  data () {
     return {
-      buttonOne: "",
-      buttonTwo: "",
+      buttonOne: '',
+      buttonTwo: '',
       dialog: false
-    };
+    }
   },
-  props: ["item", "name", "color", "icon"],
-  created() {
-    if (this.name === "Pre - Log") {
-      this.buttonOne = "To - Do";
-      this.buttonTwo = null;
-    } else if (this.name === "To - Do") {
-      this.buttonOne = "Pre - Log";
-      this.buttonTwo = "On - Going";
-    } else if (this.name === "On - Going") {
-      this.buttonOne = "To - Do";
-      this.buttonTwo = "Finished";
-    } else if (this.name === "Finished") {
-      this.buttonOne = "On - Going";
-      this.buttonTwo = null;
+  props: ['item', 'name', 'color', 'icon'],
+  created () {
+    if (this.name === 'Pre - Log') {
+      this.buttonOne = 'To - Do'
+      this.buttonTwo = null
+    } else if (this.name === 'To - Do') {
+      this.buttonOne = 'Pre - Log'
+      this.buttonTwo = 'On - Going'
+    } else if (this.name === 'On - Going') {
+      this.buttonOne = 'To - Do'
+      this.buttonTwo = 'Finished'
+    } else if (this.name === 'Finished') {
+      this.buttonOne = 'On - Going'
+      this.buttonTwo = null
     }
   },
   methods: {
-    actionOne(value) {
+    actionOne (value) {
       database
-        .collection("Tasks")
+        .collection('Tasks')
         .doc(value)
         .delete()
         .then()
-      database.collection("Tasks").add({
+      database.collection('Tasks').add({
         title: this.item.title,
         content: this.item.content,
         person: this.item.person,
         status: this.buttonOne
-      });
+      })
     },
-    actionTwo(value) {
+    actionTwo (value) {
       database
-        .collection("Tasks")
+        .collection('Tasks')
         .doc(value)
-        .delete();
-      database.collection("Tasks").add({
+        .delete()
+      database.collection('Tasks').add({
         title: this.item.title,
         content: this.item.content,
         person: this.item.person,
         status: this.buttonTwo
-      });
+      })
     },
-    removeItem(value) {
+    removeItem (value) {
       database
-        .collection("Tasks")
+        .collection('Tasks')
         .doc(value)
-        .delete();
+        .delete()
     }
   }
-};
+}
 </script>

@@ -8,9 +8,9 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn flat to="/" >Home</v-btn>
-        <v-btn flat to="/about" >About</v-btn>
         <v-btn @click.stop="dialog = true"  dark>+ Add Task</v-btn>
+        <v-btn flat to="/" >Home</v-btn>
+        <v-btn flat to="/about" color="black" >About</v-btn>
         <v-dialog v-model='dialog' content-class width="500px">
             <MainHeader @close-dialog='closeDialog()' />
         </v-dialog>
@@ -26,11 +26,11 @@
 import MainHeader from '@/components/MainHeader'
 export default {
   name: 'App',
-  components:{
+  components: {
     MainHeader
   },
-  methods:{
-    closeDialog(){
+  methods: {
+    closeDialog () {
       this.dialog = false
     }
   },
