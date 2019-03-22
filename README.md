@@ -27,3 +27,6 @@ yarn run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Hosted kamban Link
+See (https://my-kanban-9c460.firebaseapp.com/)
