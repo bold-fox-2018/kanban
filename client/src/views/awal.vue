@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a class="next" @click="tambah()">@ task</a>
+    <a class="next" @click="tambah()">@ task || list todo</a>
     <formTodo v-if="formAdd==true"></formTodo>
     <div v-if="formAdd==false">
       <div class="box">
@@ -8,7 +8,7 @@
           <div class="row">
             <!--  -->
             <div class="judul col-lg-3">
-              <h1>back-Log</h1>
+              <h1>backLog</h1>
               <div>
                 <todo v-bind:satuan="dataA"></todo>
               </div>

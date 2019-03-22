@@ -20,7 +20,7 @@
                     data-toggle="modal"
                     data-target="#exampleModal"
                     type="button"
-                  >SHOW DETAIL</button>
+                  >SHOWw DETAIL</button>
                 </form>
                 <!-- Modal =======================================================-->
                 <div
