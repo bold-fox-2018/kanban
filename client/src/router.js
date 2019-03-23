@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import firebase from 'firebase/app';
 import Home from './views/Home.vue';
-import firebase from "firebase/app";
 
 Vue.use(Router);
 
@@ -14,43 +14,43 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        requiresAuth: true
-      }
+        requiresAuth: true,
+      },
     },
     {
       path: '/login',
       name: 'login',
       component: () => import(/* webpackChunkName: "login" */ './views/auth/Login.vue'),
       meta: {
-        requiresAuth: false
+        requiresAuth: false,
       },
       beforeEnter(to, from, next) {
-        const {currentUser} = firebase.auth();
+        const { currentUser } = firebase.auth();
         if (currentUser) {
-          next('/')
+          next('/');
         } else {
           next();
         }
-      }
+      },
     },
     {
       path: '/register',
       name: 'register',
       component: () => import(/* webpackChunkName: "register" */ './views/auth/Register.vue'),
       beforeEnter(to, from, next) {
-        const {currentUser} = firebase.auth();
+        const { currentUser } = firebase.auth();
         if (currentUser) {
-          next('/')
+          next('/');
         } else {
           next();
         }
-      }
+      },
     },
   ],
 });
 
 router.beforeEach((to, from, next) => {
-  const {currentUser} = firebase.auth();
+  const { currentUser } = firebase.auth();
   if (to.meta && typeof to.meta.requiresAuth && currentUser) {
     next();
   } else if (!to.meta || !to.meta.requiresAuth) {
@@ -60,4 +60,4 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-export default router
+export default router;

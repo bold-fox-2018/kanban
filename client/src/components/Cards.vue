@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div :class="'card '+customClass">
     <div class="card-header">
       <div class="card-header-title">{{title}}</div>
     </div>
@@ -10,7 +10,14 @@
 <script>
 export default {
   name: 'Cards',
-  props: ['title'],
+  props: {
+    title: {
+      default: '',
+    },
+    customClass: {
+      default: '',
+    },
+  },
 };
 </script>
 

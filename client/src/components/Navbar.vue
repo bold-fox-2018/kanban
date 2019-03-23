@@ -32,17 +32,17 @@
 </template>
 
 <script>
-  export default {
-    name: 'Navbar',
-    methods: {
-      logout() {
-        this.$auth.signOut().then(() => {
-          this.$parent.isLogin = false;
-          this.$router.replace('/login');
-        })
-      },
-    }
-  };
+export default {
+  name: 'Navbar',
+  methods: {
+    logout() {
+      this.$auth.signOut().then(() => {
+        this.$parent.isLogin = false;
+        this.$router.replace('/login');
+      });
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">

@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
+import 'firebase/auth';
+import 'firebase/firestore';
 
 Vue.config.productionTip = false;
 
@@ -8,8 +10,6 @@ Vue.config.productionTip = false;
  * Firebase
  */
 const firebase = require('firebase/app');
-import 'firebase/auth'
-import 'firebase/firestore'
 
 // Initialize Firebase
 const init = {
@@ -26,7 +26,7 @@ firebase.initializeApp(init);
 Vue.prototype.$db = firebase.firestore();
 Vue.prototype.$auth = firebase.auth();
 
-let app = ``;
+let app = '';
 firebase.auth().onAuthStateChanged(() => {
   if (!app) {
     app = new Vue({
@@ -35,4 +35,3 @@ firebase.auth().onAuthStateChanged(() => {
     }).$mount('#app');
   }
 });
-
