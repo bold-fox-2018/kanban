@@ -1,93 +1,75 @@
 <template>
-  <div>
-    <!-- Image and text -->
-    <b-navbar variant="faded" type="light">
-      <img
-        src="http://clipart-library.com/images/qcBorropi.png"
-        alt="omah"
-        width="50px"
-      />
-      <b-navbar-brand href="#">
-        <h1>KanFan Board</h1>
-      </b-navbar-brand>
-      <div>
-        <b-button v-b-modal.create variant="primary">add task</b-button>
-        <b-modal id="create" size="lg" title="add Task" hide-footer>
-          <formadd />
-        </b-modal>
-      </div>
-    </b-navbar>
-        <kanbancard
-          v-for="(data, index) in taskLists"
-          :key="index"
-          :content="data"
-        />
-  </div>
+  <v-container grid-list-md>
+    <v-layout row wrap>
+
+      <v-flex xs3>
+        <board :color="'lime'" :title="'Back-Log'" :tasks="backlog"></board>
+      </v-flex>
+
+      <v-flex xs3>
+        <board :color="'amber'" :title="'To-Do'" :tasks="todo"></board>
+      </v-flex>
+
+      <v-flex xs3>
+        <board :color="'yellow'" :title="'On-Process'" :tasks="process"></board>
+      </v-flex>
+
+      <v-flex xs3>
+        <board :color="'orange'" :title="'Done'" :tasks="done"></board>
+      </v-flex>
+
+    </v-layout>
+  </v-container>
 </template>
+
 <script>
-import kanbancard from "../components/kanbancard.vue";
-import database from "../assets/config";
-import formadd from "../components/formadd";
+import board from '../components/Board'
+import database from '../assets/config.js'
+
+database.settings({
+  timestampsInSnapshots: true
+})
 
 export default {
-  name: "home",
-  data() {
+  data: function () {
     return {
-      taskLists: [
-        {
-          status: "back-log",
-          list: []
-        },
-        {
-          status: "to-do",
-          list: []
-        },
-        {
-          status: "doing",
-          list: []
-        },
-        {
-          status: "done",
-          list: []
-        }
-      ]
-    };
+      backlog: [],
+      todo: [],
+      process: [],
+      done: []
+    }
   },
   components: {
-    kanbancard,
-    formadd
+    board
   },
-  mounted() {
+  methods: {
+
+  },
+  created () {
     database
-      .collection("kamidisini")
-      // .doc("kanban")
-      .onSnapshot(snapshot => {
-        // console.log(snapshot.data)
-        this.taskLists[0].task = [];
-        this.taskLists[1].task = [];
-        this.taskLists[2].task = [];
-        this.taskLists[3].task = [];
-        snapshot.docs.forEach(childSnapshot => {
-          //   console.log(childSnapshot.data,"======")
-          if (childSnapshot.data.status === "back-log") {
-            const obj = childSnapshot.data;
-            obj.id = childSnapshot.key;
-            this.taskLists[0].task.push(obj);
-          } else if (childSnapshot.data.status === "to-do") {
-            const obj = childSnapshot.data;
-            obj.id = childSnapshot.key;
-            this.taskLists[1].task.push(obj);
-          } else if (childSnapshot.data.status === "doing") {
-            const obj = childSnapshot.data;
-            obj.id = childSnapshot.key;
-            this.taskLists[2].task.push(obj);
-          } else {
-            const obj = childSnapshot.data;
-            obj.id = childSnapshot.key;
-            this.taskLists[3].task.push(obj);
+      .collection('tasks')
+      .onSnapshot((querySnapshot) => {
+        this.backlog = []
+        this.todo = []
+        this.process = []
+        this.done = []
+        querySnapshot.forEach((doc) => {
+          console.log(`${doc.id} => ${doc.data()}`)
+
+          let obj = doc.data()
+          obj.id = doc.id
+
+          if (doc.data().status === 'Back-Log') {
+            this.backlog.push(obj)
+          } else if (doc.data().status === 'To-Do') {
+            this.todo.push(obj)
+          } else if (doc.data().status === 'On-Process') {
+            this.process.push(obj)
+          } else if (doc.data().status === 'Done') {
+            this.done.push(obj)
           }
-        });
-      });
+        })
+      })
   }
-};
+}
 </script>

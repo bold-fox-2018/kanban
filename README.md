@@ -1,4 +1,4 @@
-# kanban
+# LamanKanban
 
 ## Project setup
 ```
