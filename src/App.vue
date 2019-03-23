@@ -15,13 +15,25 @@
                 <v-container grid-list-md>
                   <v-layout wrap>
                     <v-flex xs12>
-                      <v-text-field v-model="title" label="Title*" required></v-text-field>
+                      <v-text-field
+                        v-model="title"
+                        label="Title*"
+                        required
+                      ></v-text-field>
                     </v-flex>
                     <v-flex xs12>
-                      <v-text-field v-model="description" label="Description*" required></v-text-field>
+                      <v-text-field
+                        v-model="description"
+                        label="Description*"
+                        required
+                      ></v-text-field>
                     </v-flex>
                     <v-flex xs12>
-                      <v-text-field v-model="assigned" label="Assigned to*" required></v-text-field>
+                      <v-text-field
+                        v-model="assigned"
+                        label="Assigned to*"
+                        required
+                      ></v-text-field>
                     </v-flex>
                   </v-layout>
                 </v-container>
@@ -29,57 +41,59 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
+                <v-btn color="blue darken-1" flat @click="dialog = false"
+                  >Close</v-btn
+                >
                 <v-btn color="blue darken-1" flat @click="senditem">Save</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
         </v-layout>
-        <v-toolbar-items>
-        </v-toolbar-items>
+        <v-toolbar-items> </v-toolbar-items>
       </v-toolbar>
     </template>
-    <router-view/>
-  <v-footer color="blue accent-4" app inset>
-        <span class="white--text">&copy; 2019 kanban from altLab</span>
-      </v-footer>
+    <router-view />
+    <v-footer color="blue accent-4" app inset>
+      <span class="white--text">&copy; 2019 kanban from altLab</span>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
-import database from './assets/config.js'
+import database from "./assets/config.js";
 
 export default {
-  name: 'App',
-  components: {
-  },
-  data () {
+  name: "App",
+  components: {},
+  data() {
     return {
-      dialog: '',
-      title: '',
-      description: '',
-      assigned: ''
-    }
+      dialog: "",
+      title: "",
+      description: "",
+      assigned: ""
+    };
   },
   methods: {
-    senditem () {
-      database.collection('tasks').add({
-        title: this.title,
-        description: this.description,
-        for: this.assigned,
-        status: 'Back-Log'
-      })
-        .then((docRef) => {
-          console.log('Document written with ID: ', docRef.id)
-          this.dialog = false
-          this.title = ''
-          this.description = ''
-          this.assigned = ''
+    senditem() {
+      database
+        .collection("tasks")
+        .add({
+          title: this.title,
+          description: this.description,
+          for: this.assigned,
+          status: "Back-Log"
         })
-        .catch((error) => {
-          console.error('Error adding document: ', error)
+        .then(docRef => {
+          console.log("Document written with ID: ", docRef.id);
+          this.dialog = false;
+          this.title = "";
+          this.description = "";
+          this.assigned = "";
         })
+        .catch(error => {
+          console.error("Error adding document: ", error);
+        });
     }
   }
-}
+};
 </script>

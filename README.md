@@ -1,5 +1,5 @@
 # LamanKanban
-
+  see [web hosting](https://kanban-39a57.firebaseapp.com).
 ## Project setup
 ```
 npm install
