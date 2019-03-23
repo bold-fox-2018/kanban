@@ -50,7 +50,7 @@
                   >Back-Log</v-btn
                 >
                 <v-btn
-                  v-if="status == 'Back-Log' || status == 'On-Process'"
+                  v-if="status == 'Back-Log' || status == 'Going'"
                   color="info"
                   dark
                   @click="changeStatus(task.id, 'To-Do')"
@@ -60,11 +60,11 @@
                   v-if="status == 'To-Do' || status == 'Done'"
                   color="warning"
                   dark
-                  @click="changeStatus(task.id, 'On-Process')"
-                  >On-Process</v-btn
+                  @click="changeStatus(task.id, 'Going')"
+                  >Going</v-btn
                 >
                 <v-btn
-                  v-if="status == 'On-Process'"
+                  v-if="status == 'Going'"
                   color="success"
                   dark
                   @click="changeStatus(task.id, 'Done')"

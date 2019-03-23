@@ -10,7 +10,7 @@
       </v-flex>
 
       <v-flex xs3>
-        <board :color="'yellow'" :title="'On-Process'" :tasks="process"></board>
+        <board :color="'yellow'" :title="'Going'" :tasks="process"></board>
       </v-flex>
 
       <v-flex xs3>
@@ -57,7 +57,7 @@ export default {
           this.backlog.push(obj);
         } else if (doc.data().status === "To-Do") {
           this.todo.push(obj);
-        } else if (doc.data().status === "On-Process") {
+        } else if (doc.data().status === "Going") {
           this.process.push(obj);
         } else if (doc.data().status === "Done") {
           this.done.push(obj);
