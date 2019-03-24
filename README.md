@@ -27,3 +27,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Deploy Link
+https://realtime-kanban-3590a.firebaseapp.com/
