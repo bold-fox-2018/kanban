@@ -4,14 +4,9 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        <!-- <button>Login</button> -->
-        <!-- <button @click="loginFacebook">Facebook</button>
-        <button @click="loginGithub">Github</button>
-        <button @click="loginGoogle">Google</button> -->
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active mx-auto" id="kanban">
-                        <!-- <a class="navbar-brand" href="#" id="lakban">Lakban-Kanban</a> -->
                         <router-link to="/" class="navbar-brand mx-auto underline--magical" style="font-size: 2em;">Bamkanban</router-link>
                     </li>
                 </ul>
@@ -21,43 +16,41 @@
 </template>
 
 <script>
-    import firebase, { facebook, google, github } from '@/Firebase/config.js'
-    export default {
-
-        // name: 'NavbarGeneral',
-        // props: {
-        //     msg: String
-        // }
-        methods: {
-            loginGoogle() {
-                firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
-                .then(token => {
-                    console.log(token)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-            },
-            loginFacebook() {
-                firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
-                .then(token => {
-                    console.log(token)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-            },
-            loginGithub() {
-                firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider())
-                .then(token => {
-                    console.log(token)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-            }
-        }
+export default {
+  name: 'NavbarGeneral',
+  // props: {
+  //     msg: String
+  // }
+  methods: {
+    loginGoogle () {
+      firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then(token => {
+          console.log(token)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    loginFacebook () {
+      firebase.auth().signInWithPopup(new firebase.auth.FacebookAuthProvider())
+        .then(token => {
+          console.log(token)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    loginGithub () {
+      firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider())
+        .then(token => {
+          console.log(token)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
+  }
+}
 </script>
 
 <style>

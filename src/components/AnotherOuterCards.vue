@@ -5,11 +5,6 @@
             <div id="outerCards" class="col">
                 {{ detail. title }}
             </div>
-            <div class="col col-2 pull-right float-right justify-content-end">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    <img src="https://img.icons8.com/color/48/000000/plus-math.png" height="18">
-                </button>
-            </div>
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -34,6 +29,7 @@
                             </div>
                     </div>
                     <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button> -->
                         <button id="modal-button" type="button" class="btn btn-primary" @click="addTodo">Add Todo</button>
                     </div>
                     </div>
@@ -44,7 +40,6 @@
     <div class="card-body text-success">
       <h5 class="card-title"></h5>
       <TodoContent :todos="detail.todos"></TodoContent>
-      <!-- {{detail.todos}} -->
     </div>
   </div>
 </template>
@@ -81,7 +76,7 @@ export default {
         assigned_to: this.assigned_to
       })
         .then(function (docRef) {
-
+            //
         })
         .catch(function (error) {
           console.error('Error writing document: ', error)
