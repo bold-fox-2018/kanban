@@ -14,6 +14,7 @@
         <ul class="navbar-nav mr-auto"></ul>
         <form class="form-inline my-2 my-lg-0">
           <button
+            @click="dialog === true"
             class="btn btn-outline-success"
             data-toggle="modal"
             data-target="#exampleModal"
@@ -79,7 +80,7 @@
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                       
-                      <button v-on:click.prevent="addTask" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+                      <button  data-dismiss="modal"  v-on:click="addTask"  class="btn btn-primary">Save changes</button>
                       
                     </div>
                   </div>
@@ -100,6 +101,7 @@ export default {
   props: {},
   data() {
     return {
+      dialog: false,
       title: "",
       description: "",
       point: "",
@@ -116,9 +118,10 @@ export default {
                 description: this.description,
                 point: this.point,
                 assignedto: this.assignedto,
-                status: 'backlog'
+                status: 'done'
             })
             .then((docRef)=>{
+                this.dialog = false
                 this.title = ''
                 this.description = ''
                 this.point = ''

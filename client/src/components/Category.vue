@@ -8,16 +8,17 @@
             <hr> 
              <div class="container kotak">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <p>Masok pak eko</p>
+                    <div class="col-sm-12" v-for="(item, index) in backlog" v-bind:key="index">
+                        <p>{{item.title}}</p>
                         <hr>
-                        <p>Point : 20000</p>
-                        <p>Assigned To: Hamba Allah</p>
+                        <p>{{item.description}}</p>
+                        <p>Point : {{item.point}}</p>
+                        <p>Assigned To: {{item.assignedto}}</p>
                     </div>
                 </div>
             </div>
             <hr>
-            <Task />
+            <!-- <Task /> -->
           </div>
         </div>
       </div>
@@ -26,6 +27,17 @@
           <div class="card-body">
             <h5 class="card-title">To-Do</h5>
             <hr>
+            <div class="container kotak">
+              <div class="row">
+                <div class="col-sm-12 mb-10" v-for="(item, index) in todo" v-bind:key="index">
+                      <p>{{item.title}}</p>
+                      <hr>
+                      <p>{{item.description}}</p>
+                      <p>Point : {{item.point}}</p>
+                      <p>Assigned To: {{item.assignedto}}</p>
+                </div>  
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -34,6 +46,13 @@
           <div class="card-body">
             <h5 class="card-title">Doing</h5>
             <hr>
+            <div class="col-sm-12 mb-10" v-for="(item, index) in doing" v-bind:key="index">
+                    <p>{{item.title}}</p>
+                    <hr>
+                    <p>{{item.description}}</p>
+                    <p>Point : {{item.point}}</p>
+                    <p>Assigned To: {{item.assignedto}}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -42,6 +61,13 @@
           <div class="card-body">
             <h5 class="card-title">Done</h5>
             <hr>
+            <div class="col-sm-12 mb-10" v-for="(item, index) in done" v-bind:key="index">
+                    <p>{{item.title}}</p>
+                    <hr>
+                    <p>{{item.description}}</p>
+                    <p>Point: {{item.point}}</p>
+                    <p>Assigned To: {{item.assignedto}}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -51,7 +77,7 @@
 
 <style scoped>
     .kotak {
-        border: 1px solid whitesmoke;
+        /* border: 1px solid whitesmoke; */
     }
 </style>
 
@@ -76,12 +102,16 @@ export default {
   }
   ,
   mounted() {
+    
       db.collection('Tasks')
-        .get()
-        .then((querySnapshot)=>{
+        .onSnapshot((querySnapshot)=>{
+          this.backlog = []
+          this.todo = []
+          this.doing = []
+          this.done = []
             querySnapshot.forEach(docs => {
                 console.log(docs.data())
-                console.log(docs.data().status, 'cek status')
+                // console.log(docs.data().status, 'cek status')
                 if (docs.data().status === 'backlog') {
                     this.backlog.push(docs.data())
                 } else if (docs.data().status === 'todo') {
@@ -89,7 +119,7 @@ export default {
                 } else if (docs.data().status === 'doing') {
                     this.doing.push(docs.data())
                 } else if (docs.data().status === 'done') {
-                    this.doing.push(docs.data())
+                    this.done.push(docs.data())
                 }
             });
             // console.log(querySnapshot.docs)
