@@ -17,7 +17,7 @@
             </div>
             <div>
                 <button id="modal-button" type="button" class="btn btn-primary" v-if="td.status !== 3" @click="nextState(td.id, td.status)">{{ td.next }}</button>
-            </div>  
+            </div>
         </div>
     </div>
 </template>

@@ -76,7 +76,7 @@ export default {
         assigned_to: this.assigned_to
       })
         .then(function (docRef) {
-            //
+          //
         })
         .catch(function (error) {
           console.error('Error writing document: ', error)
