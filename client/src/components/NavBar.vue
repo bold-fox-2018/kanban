@@ -79,9 +79,9 @@
                     >
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      
+
                       <button  data-dismiss="modal"  v-on:click="addTask"  class="btn btn-primary">Save changes</button>
-                      
+
                     </div>
                   </div>
                 </form>
@@ -95,45 +95,44 @@
 </template>
 
 <script>
-import db from '@/api/firebase.js'
+import db from '@/api/firebase.js';
+
 export default {
-  name: "NavBar",
-  props: {},
+  name: 'NavBar',
   data() {
     return {
-      dialog: false,
-      title: "",
-      description: "",
-      point: "",
-      assignedto: ""
+      title: '',
+      description: '',
+      point: '',
+      assignedto: '',
     };
   },
   methods: {
-      addTask() {
-        //   Add Task from Modal
-          console.log(this.title, this.description, this.point, this.assignedto)
-          db.collection('Tasks')
-            .add({
-                title: this.title,
-                description: this.description,
-                point: this.point,
-                assignedto: this.assignedto,
-                status: 'done'
-            })
-            .then((docRef)=>{
-                this.dialog = false
-                this.title = ''
-                this.description = ''
-                this.point = ''
-                this.assignedto = ''
-                console.log('Document created with ID:', docRef.id)
-            })
-            .catch(function(err){
-                console.log(err)
-            })
-      }
-  }
+    addTask() {
+      //   Add Task from Modal
+      db.collection('Tasks')
+        .add({
+          title: this.title,
+          description: this.description,
+          point: this.point,
+          assignedto: this.assignedto,
+          createdAt: new Date(),
+          status: 'backlog',
+
+        })
+        .then((docRef) => {
+          // console.log(docRef)
+          this.title = '';
+          this.description = '';
+          this.point = '';
+          this.assignedto = '';
+          // this.id = docRef.id
+          console.log('Document created with ID:', docRef.id);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
-
-
