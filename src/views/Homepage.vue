@@ -1,12 +1,12 @@
 <template>
     <div id="navbar">
-        <NavbarGeneral></NavbarGeneral>
-
+        <NavbarGeneral />
+        <AddTodo />
         <div class="d-flex">
-            <OuterCards :detail="todo"></OuterCards>
-            <OuterCards2 :detail="doToday"></OuterCards2>
-            <OuterCards2 :detail="inProgress"></OuterCards2>
-            <OuterCards2 :detail="done"></OuterCards2>
+            <OuterCards :detail="todo" :pos="0"></OuterCards>
+            <OuterCards :detail="doToday" :pos="1"></OuterCards>
+            <OuterCards :detail="inProgress" :pos="2"></OuterCards>
+            <OuterCards :detail="done" :pos="3"></OuterCards>
         </div>
     </div>
 </template>
@@ -14,15 +14,15 @@
 <script>
 import NavbarGeneral from '@/components/NavbarGeneral.vue'
 import OuterCards from '@/components/outer-cards.vue'
-import OuterCards2 from '@/components/AnotherOuterCards.vue'
+import AddTodo from '@/components/AddTodo.vue'
 import db from '@/Firebase/config.js'
 
 export default {
   name: 'navbar',
   components: {
-    NavbarGeneral: NavbarGeneral,
-    OuterCards: OuterCards,
-    OuterCards2
+    NavbarGeneral,
+    OuterCards,
+    AddTodo
   },
   created () {
     db.collection('todos').onSnapshot(querySnapshot => {

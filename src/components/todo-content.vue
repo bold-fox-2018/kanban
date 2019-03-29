@@ -5,18 +5,18 @@
             <!-- {{td}} -->
             <div class="card-body" data-toggle="modal" :data-target="`#editTodo${td.id}`">
                 <!-- {{td.status}} -->
-                <p><a href="#">{{td.todo}}</a></p>
-                <p><a href="#">Point: {{td.point}}</a></p>
-                <p><a href="#">Assigned To: {{td.assigned_to}}</a></p>
+                <p class="content-font">{{td.todo}}</p>
+                <p class="content-font">Point: {{td.point}}</p>
+                <p class="content-font">Assigned To: {{td.assigned_to}}</p>
             </div>
-              <div>
-                <button id="modal-button" type="button" class="btn btn-primary" v-if="td.status !== 0" @click="previousState(td.id, td.status)">{{ td.previous }}</button>
+            <div>
+                <button id="modal-button" type="button" class="btn btn-primary another-button" v-if="td.status !== 0" @click="previousState(td.id, td.status)">{{ td.previous }}</button>
             </div>
             <div>
                 <button id="modal-button" type="button" class="btn btn-primary delete-button" @click="remove(td.id)">Delete</button>
             </div>
             <div>
-                <button id="modal-button" type="button" class="btn btn-primary" v-if="td.status !== 3" @click="nextState(td.id, td.status)">{{ td.next }}</button>
+                <button id="modal-button" type="button" class="btn btn-primary another-button" v-if="td.status !== 3" @click="nextState(td.id, td.status)">{{ td.next }}</button>
             </div>
         </div>
     </div>
@@ -99,5 +99,13 @@ export default {
     .delete-button {
         background-color: #c60d26 !important;
         color: white;
+    }
+    .another-button {
+        background-color: #749de0 !important;
+        color: white;
+    }
+    .content-font {
+        color: #000;
+        font-weight: 300;
     }
 </style>
