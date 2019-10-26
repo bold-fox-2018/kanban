@@ -1,0 +1,32 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "firebase": "^5.9.0",
+    "jquery": "^3.3.1",
+    "jquery-confirm": "^3.3.4",
+    "popper.js": "^1.14.7",
+    "sweetalert2": "^8.5.0",
+    "vue": "^2.6.6",
+    "vue-router": "^3.0.1",
+    "vuedraggable": "^2.19.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-eslint": "^3.5.0",
+    "@vue/cli-service": "^3.5.0",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "expose-loader": "^0.7.5",
+    "vue-template-compiler": "^2.5.21"
+  }
+}
